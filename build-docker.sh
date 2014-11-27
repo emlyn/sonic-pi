@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
-docker build -t sonic-build - < Dockerfile
+docker build -t sonic-pi - < Dockerfile
 
-docker run -v $PWD:/sonic-pi sonicbuild bash -c "cd /sonic-pi/app/server/bin; ./compile-extensions.rb"
-docker run -v $PWD:/sonic-pi sonicbuild bash -c "cd /sonic-pi/app/gui/qt; ./rp-build-app"
+git clean -fdx
+
+docker run -v $PWD:/sonic-pi sonic-pi bash -c "cd /sonic-pi/app/server/bin; ./compile-extensions.rb"
+docker run -v $PWD:/sonic-pi sonic-pi bash -c "cd /sonic-pi/app/gui/qt;     ./rp-build-app"
