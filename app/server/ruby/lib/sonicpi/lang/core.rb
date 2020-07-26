@@ -2957,11 +2957,12 @@ end
 
 
       def one_in(num)
-        num = num.to_i
-        if num < 1
+        if num <= 0.0
           false
+        elif num < 1.0
+          true
         else
-          rrand_i(1, num) == 1
+          rrand(0, num) < 1.0
         end
       end
       doc name:           :one_in,
@@ -2976,7 +2977,9 @@ end
   "
   one_in 3 # will return true with a probability of 1/3, false with a probability of 2/3",
   "
-  one_in 100 # will return true with a probability of 1/100, false with a probability of 99/100"]
+  one_in 100 # will return true with a probability of 1/100, false with a probability of 99/100",
+  "
+  one_in 1.5 # will return true with a probability of 1/1.5 (= 2/3), false with probability 1/3"]
 
 
 
